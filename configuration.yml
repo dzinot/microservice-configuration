@@ -1,0 +1,30 @@
+spring:
+  profiles:
+    active: dev
+
+---
+
+spring:
+  profiles: dev
+  cloud:
+    config:
+      server:
+        git:
+          uri: https://github.com/dzinot/microservice-configuration
+server:
+  port: 8888
+endpoints:
+  restart:
+    enabled: true
+  shutdown:
+    enabled: true
+  health:
+    sensitive: false
+eureka:
+  instance:
+    hostname: configuration
+  client:
+    registerWithEureka: true
+    fetchRegistry: true
+    serviceUrl:
+      defaultZone: http://discovery:8761/eureka/
