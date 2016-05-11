@@ -4,8 +4,6 @@ spring:
 
 ---
 
-spring:
-  profiles: dev
 server:
   port: 10000
 sidecar:
@@ -26,3 +24,21 @@ eureka:
     fetchRegistry: true
     serviceUrl:
       defaultZone: http://discovery:8761/eureka/
+security:
+  user:
+    password: none
+  oauth2:
+    client:
+      access-token-uri: http://auth:9999/uaa/oauth/token
+      userAuthorizationUri: http://auth:9999/uaa/oauth/token
+      clientId: ms
+      clientSecret: MsPassword
+    resource:
+      jwt:
+        key-value: |
+          -----BEGIN PUBLIC KEY-----
+          MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEApj9W0UcNTJsKoK83zEktF8RTcwkCo9ar3/4u/K3ilqExmtWrDVN+WJ0rB/Vd9wTofWSxZx3+QczW6UJo8UhlUGy0liiXrSIv8kgh/XKbNwCwWhquIw8WSBz4WbejBLjKZrNBpJXtbY8ZYh6qt1MnQsGDJUx7DsohdWjsgcFtOJH+n3WDif7cwSA28k44dKAGe0HunyK5mbXsWlLreV9FPyD306rEPzp7tzBDCUqIujj/MYvLZ68U7qNA4Af5D738jwHWUFnMLmkyTS+X+bn4KAdL/UkQMrbBUgc6j/Bn/r5aws/tVdhTffrDYh3DjJB/VZM5LeEj+R63Fd1ZnKwv7wIDAQAB
+          -----END PUBLIC KEY-----
+logging:
+  level:
+    org.springframework.security: DEBUG
